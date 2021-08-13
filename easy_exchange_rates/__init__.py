@@ -1,0 +1,1 @@
+from easy_exchange_rates.eer import API

@@ -22,3 +22,10 @@ print(data_frame.head(5))
 2021-01-04  1.566076  1.225061
 2021-01-05  1.558553  1.229681
 ```
+
+
+# Testing
+
+```
+python3 -m unittest discover -s tests
+```

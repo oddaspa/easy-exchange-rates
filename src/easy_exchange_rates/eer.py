@@ -32,3 +32,8 @@ class API():
         roll = df.rolling(window).mean()
         roll.columns = [f"roll_{window}_{tag}" for tag in list(roll.columns)]
         return df.merge(roll,right_index=True, left_index=True)
+
+    def rolling_max(self, df, window=7):
+        roll = df.rolling(window).max()
+        roll.columns = [f"roll_{window}_{tag}" for tag in list(roll.columns)]
+        return df.merge(roll,right_index=True, left_index=True)

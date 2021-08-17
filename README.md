@@ -32,3 +32,7 @@ print(data_frame.head(5))
 ```
 python3 -m unittest discover -s tests
 ```
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes

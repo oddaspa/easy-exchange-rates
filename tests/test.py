@@ -1,9 +1,9 @@
-import sys, os, unittest
+import sys, unittest
 import pandas as pd
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from src.easy_exchange_rates.eer import API
-del sys.path[0]
+sys.path.insert(1, 'src/easy_exchange_rates')
+from eer import API
+
 
 #Constants
 BASE_CURRENCY="EUR"

@@ -1,10 +1,11 @@
-# easy-exchange-rates
+# Easy Exchange Rates
 
 [![PyPI package](https://img.shields.io/badge/pip%20install-easy--exchange--rates-brightgreen)](https://pypi.org/project/easy-exchange-rates/) 
 [![version number](https://img.shields.io/pypi/v/easy-exchange-rates?color=green&label=version)](https://pypi.org/project/easy-exchange-rates/) 
-[![Actions Status](https://github.com/tomchen/example_pypi_package/workflows/Test/badge.svg)](https://github.com/oddaspa/easy-exchange-rates/actions) 
+[![Actions Status](https://github.com/oddaspa/easy-exchange-rates/workflows/Build%20status/badge.svg)](https://github.com/oddaspa/easy-exchange-rates/actions) 
 [![License](https://img.shields.io/github/license/oddaspa/easy-exchange-rates)](https://github.com/oddaspa/easy-exchange-rates/blob/main/LICENSE.txt)
 
+A python package for retrieving currency exchange data from https://exchangerate.host/ to a pandas dataframe.
 ## Usage
 ```python
 from easy_exchange_rates import API
@@ -32,4 +33,3 @@ print(data_frame.head(5))
 ```
 python3 -m unittest discover -s tests
 ```
-Test

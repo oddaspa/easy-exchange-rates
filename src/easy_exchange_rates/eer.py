@@ -1,32 +1,34 @@
 import requests
 from datetime import datetime
 import pandas as pd
+import io
 
 class API():    
 
     def __init__(self):
-        self.base_url = 'https://api.exchangerate.host/timeseries?'
+        self.base_url = 'https://data-api.ecb.europa.eu/service/data/EXR/'
         
     def get_exchange_rates(self, base_currency="EUR", start_date="2020-01-01", end_date="2020-01-04",targets=[]):
-        date_format = "%Y-%m-%d"
-        a = datetime.strptime(start_date, date_format)
-        b = datetime.strptime(end_date, date_format)
-        delta = b - a
-        if delta.days > 366:
-            print("Can not retieve more than 366 days of data")
-            return False
-        query = self.base_url + f'start_date={start_date}&end_date={end_date}&base={base_currency}'
-        if targets:
-            targets = ','.join(targets)
-            query += f'&symbols={targets}'
-        response = requests.get(query).json()
-        if response["success"]:
-            return response["rates"]
+        
+        query = f'{self.base_url}D.{"+".join(targets)}.{base_currency}.SP00.A'
+        
+        response = requests.get(
+            query,
+            params = {
+                'startPeriod': start_date,
+                'endPeriod': end_date
+            },
+            headers = {'Accept': 'text/csv'})
+
+        if response.ok:
+            df = pd.read_csv(io.StringIO(response.text))
+            df = df.set_index("TIME_PERIOD")
+            df = df[["CURRENCY", "OBS_VALUE"]]
+            df = df.pivot(columns=["CURRENCY"])
+            df.columns = [c[1] for c in df.columns]
+            return df
         else:
             return response
-    
-    def to_dataframe(self,ts):
-        return pd.DataFrame(ts).T
 
     def rolling_average(self, df, window=7):
         roll = df.rolling(window).mean()

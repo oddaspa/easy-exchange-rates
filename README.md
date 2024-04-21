@@ -5,26 +5,26 @@
 [![Actions Status](https://github.com/oddaspa/easy-exchange-rates/workflows/Build%20status/badge.svg)](https://github.com/oddaspa/easy-exchange-rates/actions) 
 [![License](https://img.shields.io/github/license/oddaspa/easy-exchange-rates)](https://github.com/oddaspa/easy-exchange-rates/blob/main/LICENSE.txt)
 
-A python package for retrieving currency exchange data from https://exchangerate.host/ to a pandas dataframe.
+A python package for retrieving currency exchange data from https://data.ecb.europa.eu/ to a pandas dataframe.
 ## Usage
 ```python
 from easy_exchange_rates import API
 api = API()
-time_series = api.get_exchange_rates(
+df = api.get_exchange_rates(
   base_currency="EUR", 
-  start_date="2021-01-01", 
-  end_date="2021-08-13", 
+  start_date="2024-03-12",
+  end_date="2024-04-21",
   targets=["USD","CAD"]
 )
-data_frame = api.to_dataframe(time_series)
-print(data_frame.head(5))
+print(df.head(5))
 >>>
-                 CAD       USD
-2021-01-01  1.549988  1.217582
-2021-01-02  1.544791  1.213500
-2021-01-03  1.557791  1.223409
-2021-01-04  1.566076  1.225061
-2021-01-05  1.558553  1.229681
+	        CAD	    USD
+TIME_PERIOD		
+2024-03-12	1.4739	1.0916
+2024-03-13	1.4756	1.0939
+2024-03-14	1.4725	1.0925
+2024-03-15	1.4731	1.0892
+2024-03-18	1.4745	1.0892
 ```
 
 
